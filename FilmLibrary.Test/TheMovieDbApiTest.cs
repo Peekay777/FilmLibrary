@@ -9,8 +9,12 @@ namespace FilmLibrary.Test
         [Fact]
         public async void Test()
         {
-            TheMovieDbApi mdb = new TheMovieDbApi("api", "proxy", "username", "password");
-            MovieResults mr = await mdb.FindMovie("Fight Club");
+            string api = "";
+            //TheMovieDbApi mdb = new TheMovieDbApi("api", "proxy", "username", "password");
+            TheMovieDbApi mdb = new TheMovieDbApi(api);
+
+            MovieSearch ms = await mdb.FindMovie("Fight Club");
+            Movie m = await mdb.GetMovie(ms.results[0].id);
         }
     }
 }
