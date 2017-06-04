@@ -1,6 +1,6 @@
-﻿namespace FilmLibrary.TheMovieDatabaseAPI.Models
+﻿namespace FilmLibrary.InternetMovieDB.TheMovieDatabase.Models
 {
-    public class MovieSearch
+    public class MovieSearchResult
     {
         public int page { get; set; }
         public Result[] results { get; set; }

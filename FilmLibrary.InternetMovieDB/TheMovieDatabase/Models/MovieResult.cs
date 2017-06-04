@@ -1,6 +1,6 @@
-﻿namespace FilmLibrary.TheMovieDatabaseAPI.Models
+﻿namespace FilmLibrary.InternetMovieDB.TheMovieDatabase.Models
 {
-    public class Movie
+    public class MovieResult
     {
         public bool adult { get; set; }
         public string backdrop_path { get; set; }
