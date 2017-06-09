@@ -40,9 +40,9 @@ namespace FilmLibrary.InternetMovieDB.TheMovieDatabase
             {
                 return await _httpClient.GetStringAsync(address);
             }
-            catch (Exception e)
+            catch
             {
-                throw e;
+                return "";
             }
         }
     }
