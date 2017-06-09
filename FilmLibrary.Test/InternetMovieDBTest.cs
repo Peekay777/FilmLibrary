@@ -1,11 +1,9 @@
 ﻿using FilmLibrary.InternetMovieDB;
 using FilmLibrary.InternetMovieDB.TheMovieDatabase;
 using FilmLibrary.InternetMovieDB.TheMovieDatabase.Models;
-using Microsoft.Extensions.Configuration;
 using System;
-using System.IO;
-using Xunit;
 using System.Threading.Tasks;
+using Xunit;
 
 namespace FilmLibrary.Test
 {
