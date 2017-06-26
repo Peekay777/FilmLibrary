@@ -1,4 +1,4 @@
-using FilmLibrary.Data;
+using FilmLibrary.Data.InMemory;
 using FilmLibrary.Models;
 using System.Collections.Generic;
 using Xunit;
@@ -10,14 +10,14 @@ namespace FilmLibrary.Test
         private static Film _exampleFilm1 = new Film()
         {
             Id = 0,
-            Name = "Fight Club",
-            RunningTimeInMinutes = 139
+            Title = "Fight Club",
+            Runtime = 139
         };
         private static Film _exampleFilm2 = new Film()
         {
             Id = 0,
-            Name = "Dogville",
-            RunningTimeInMinutes = 178
+            Title = "Dogville",
+            Runtime = 178
         };
 
         [Theory(DisplayName = "Add a film")]
@@ -47,14 +47,14 @@ namespace FilmLibrary.Test
             Film film1 = new Film()
             {
                 Id = 0,
-                Name = "Fight Club",
-                RunningTimeInMinutes = 139
+                Title = "Fight Club",
+                Runtime = 139
             };
             Film film2 = new Film()
             {
                 Id = 1,
-                Name = "Dogville",
-                RunningTimeInMinutes = 178
+                Title = "Dogville",
+                Runtime = 178
             };
 
             List<Film> expectedList = new List<Film>()
@@ -98,8 +98,8 @@ namespace FilmLibrary.Test
             Film expectedFilm = new Film()
             {
                 Id = 0,
-                Name = "Fight Club: Extended",
-                RunningTimeInMinutes = 150
+                Title = "Fight Club: Extended",
+                Runtime = 150
             };
 
             // Act
@@ -124,8 +124,8 @@ namespace FilmLibrary.Test
             Film expectedFilm = new Film()
             {
                 Id = 0,
-                Name = "Fight Club: Extended",
-                RunningTimeInMinutes = 150
+                Title = "Fight Club: Extended",
+                Runtime = 150
             };
 
             // Act

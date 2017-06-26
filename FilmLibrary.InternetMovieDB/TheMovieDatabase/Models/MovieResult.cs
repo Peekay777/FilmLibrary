@@ -14,7 +14,7 @@
         public string original_title { get; set; }
         public string overview { get; set; }
         public float popularity { get; set; }
-        public object poster_path { get; set; }
+        public string poster_path { get; set; }
         public Production_Companies[] production_companies { get; set; }
         public Production_Countries[] production_countries { get; set; }
         public string release_date { get; set; }
@@ -27,6 +27,24 @@
         public bool video { get; set; }
         public float vote_average { get; set; }
         public int vote_count { get; set; }
+        public Images images { get; set; }
+    }
+
+    public class Images
+    {
+        public Backdrop[] backdrops { get; set; }
+        public object[] posters { get; set; }
+    }
+
+    public class Backdrop
+    {
+        public float aspect_ratio { get; set; }
+        public string file_path { get; set; }
+        public int height { get; set; }
+        public string iso_639_1 { get; set; }
+        public float vote_average { get; set; }
+        public int vote_count { get; set; }
+        public int width { get; set; }
     }
 
     public class Genre

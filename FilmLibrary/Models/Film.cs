@@ -3,8 +3,13 @@
     public class Film
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public ushort RunningTimeInMinutes { get; set; }
+        public string Title { get; set; }
+        public ushort Runtime { get; set; }
+        public string ReleaseDate { get; set; }
+
+
+
+
 
         public override bool Equals(object obj)
         {
@@ -14,16 +19,16 @@
             Film film = (Film)obj;
             return 
                 (Id == film.Id) && 
-                (Name == film.Name) &&
-                (RunningTimeInMinutes == film.RunningTimeInMinutes);
+                (Title == film.Title) &&
+                (Runtime == film.Runtime);
         }
 
         public override int GetHashCode()
         {
             return 
                 Id.GetHashCode() ^ 
-                (Name == null ? 0 : Name.GetHashCode()) ^ 
-                RunningTimeInMinutes.GetHashCode();
+                (Title == null ? 0 : Title.GetHashCode()) ^ 
+                Runtime.GetHashCode();
         }
     }
 }

@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace FilmLibrary.Data
+namespace FilmLibrary.Data.InMemory
 {
     public class FilmLibraryRepoInMemory : IFilmLibraryRepo
     {

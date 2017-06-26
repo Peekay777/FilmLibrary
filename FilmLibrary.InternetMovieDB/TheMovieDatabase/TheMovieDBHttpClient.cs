@@ -27,13 +27,6 @@ namespace FilmLibrary.InternetMovieDB.TheMovieDatabase
             SetJsonHttpClient(httpClientHandler);
         }
 
-        private void SetJsonHttpClient(HttpClientHandler handler)
-        {
-            _httpClient = new HttpClient(handler);
-            _httpClient.DefaultRequestHeaders.Accept.Clear();
-            _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-        }
-
         public async Task<string> MakeRequest(Uri address)
         {
             try
@@ -44,6 +37,13 @@ namespace FilmLibrary.InternetMovieDB.TheMovieDatabase
             {
                 return "";
             }
+        }
+
+        private void SetJsonHttpClient(HttpClientHandler handler)
+        {
+            _httpClient = new HttpClient(handler);
+            _httpClient.DefaultRequestHeaders.Accept.Clear();
+            _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
     }
 }

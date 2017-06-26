@@ -1,10 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace FilmLibrary.InternetMovieDB
 {
-    public interface IMovieService<T1, T2>
+    public interface IMovieService
     {
-        Task<T1> MovieSearchAsync(string query);
-        Task<T2> GetMovieAsync(string movieId);
+        Task<T> QueryAsync<T>(InternetMovieDBUrlBuilder uri);
+        Task<T> QueryAsync<T>(string relativeUrl, Dictionary<String, String> queryPairs);
     }
 }

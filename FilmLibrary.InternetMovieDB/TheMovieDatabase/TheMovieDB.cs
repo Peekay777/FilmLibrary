@@ -6,64 +6,43 @@ using Newtonsoft.Json;
 
 namespace FilmLibrary.InternetMovieDB.TheMovieDatabase
 {
-    public class TheMovieDB<MovieSearchResult, MovieResult> : IMovieService<MovieSearchResult, MovieResult>
+    public class TheMovieDB : IMovieService
     {
         private IHttpClient _client;
         private string _apiKey;
         private string _baseUrl;        // "https://api.themoviedb.org";
-        private string _searchMovieUrl; // "3/search/movie";
-        private string _getMovieUrl;    // "3/movie";
+        //private string _searchMovieUrl; // "3/search/movie";
+        //private string _getMovieUrl;    // "3/movie";
 
-        public TheMovieDB(IHttpClient client, string apiKey, string baseUrl, string searchMovieUrl, string getMovieUrl)
+        public TheMovieDB(IHttpClient client)
+        {
+            _client = client;
+        }
+
+        public TheMovieDB(IHttpClient client, string apiKey, string baseUrl)
         {
             _client = client;
             _apiKey = apiKey;
             _baseUrl = baseUrl;
-            _searchMovieUrl = searchMovieUrl;
-            _getMovieUrl = getMovieUrl;
         }
 
-        public async Task<MovieResult> GetMovieAsync(string movieId)
+        public async Task<T> QueryAsync<T>(InternetMovieDBUrlBuilder uri)
         {
-            Uri baseUri = new Uri(_baseUrl);
-            Uri getMovieUrl = new Uri(baseUri, _getMovieUrl + "/" + movieId);
-            var url = new UriBuilder(getMovieUrl);
+            string responseText = await _client.MakeRequest(await uri.ConstructUri());
 
-            using (var content = new FormUrlEncodedContent(
-                new KeyValuePair<string, string>[]{
-                    new KeyValuePair<string, string>("api_key", _apiKey),
-                    new KeyValuePair<string, string>("language", "en-US")
-            }))
-            {
-                url.Query = await content.ReadAsStringAsync();
-            }
-
-            string responseText = await _client.MakeRequest(url.Uri);
-
-            return JsonConvert.DeserializeObject<MovieResult>(responseText);
+            return JsonConvert.DeserializeObject<T>(responseText);
         }
 
-        public async Task<MovieSearchResult> MovieSearchAsync(string query)
+        public async Task<T> QueryAsync<T>(string relativeUrl, Dictionary<String, String> queryPairs)
         {
-            Uri baseUri = new Uri(_baseUrl);
-            Uri searchMovieUrl = new Uri(baseUri, _searchMovieUrl);
-            var url = new UriBuilder(searchMovieUrl);
-
-            using (var content = new FormUrlEncodedContent(
-                new KeyValuePair<string, string>[]{
-                    new KeyValuePair<string, string>("api_key", _apiKey),
-                    new KeyValuePair<string, string>("language", "en-US"),
-                    new KeyValuePair<string, string>("page", "1"),
-                    new KeyValuePair<string, string>("include_adult", "false"),
-                    new KeyValuePair<string, string>("query", query),
-            }))
+            InternetMovieDBUrlBuilder uri = new InternetMovieDBUrlBuilder(_baseUrl + "/" + relativeUrl);
+            uri.Add("api_key", _apiKey);
+            foreach (var pair in queryPairs)
             {
-                url.Query = await content.ReadAsStringAsync();
+                uri.Add(pair.Key, pair.Value);
             }
 
-            string responseText = await _client.MakeRequest(url.Uri);
-
-            return JsonConvert.DeserializeObject<MovieSearchResult>(responseText);
+            return await QueryAsync<T>(uri);
         }
     }
 }
