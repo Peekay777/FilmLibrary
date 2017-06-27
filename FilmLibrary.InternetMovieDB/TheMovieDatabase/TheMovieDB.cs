@@ -1,8 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace FilmLibrary.InternetMovieDB.TheMovieDatabase
 {
@@ -11,8 +10,6 @@ namespace FilmLibrary.InternetMovieDB.TheMovieDatabase
         private IHttpClient _client;
         private string _apiKey;
         private string _baseUrl;        // "https://api.themoviedb.org";
-        //private string _searchMovieUrl; // "3/search/movie";
-        //private string _getMovieUrl;    // "3/movie";
 
         public TheMovieDB(IHttpClient client)
         {
