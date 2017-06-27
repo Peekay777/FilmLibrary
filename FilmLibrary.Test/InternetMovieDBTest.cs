@@ -14,14 +14,14 @@ namespace FilmLibrary.Test
         //public async void Test()
         //{
         //    IHttpClient httpClient;
-        //    if (!string.IsNullOrEmpty(InternetMovieDBSettings.Settings.ConfigItems.Proxy.Url) &&
-        //        !string.IsNullOrEmpty(InternetMovieDBSettings.Settings.ConfigItems.Proxy.Username) &&
-        //        !string.IsNullOrEmpty(InternetMovieDBSettings.Settings.ConfigItems.Proxy.Password))
+        //    if (!string.IsNullOrEmpty(AppConfig<InternetMovieDBConfig>.Instance.Items.Proxy.Url) &&
+        //        !string.IsNullOrEmpty(AppConfig<InternetMovieDBConfig>.Instance.Items.Proxy.Username) &&
+        //        !string.IsNullOrEmpty(AppConfig<InternetMovieDBConfig>.Instance.Items.Proxy.Password))
         //    {
         //        httpClient = new TheMovieDBHttpClient(
-        //            InternetMovieDBSettings.Settings.ConfigItems.Proxy.Url,
-        //            InternetMovieDBSettings.Settings.ConfigItems.Proxy.Username,
-        //            InternetMovieDBSettings.Settings.ConfigItems.Proxy.Password);
+        //            AppConfig<InternetMovieDBConfig>.Instance.Items.Proxy.Url,
+        //            AppConfig<InternetMovieDBConfig>.Instance.Items.Proxy.Username,
+        //            AppConfig<InternetMovieDBConfig>.Instance.Items.Proxy.Password);
         //    }
         //    else
         //    {
@@ -31,8 +31,8 @@ namespace FilmLibrary.Test
 
         //    IMovieService movieService = new TheMovieDB(
         //        httpClient,
-        //        InternetMovieDBSettings.Settings.ConfigItems.Themoviedb_apikey,
-        //        InternetMovieDBSettings.Settings.ConfigItems.BaseUrl);
+        //        AppConfig<InternetMovieDBConfig>.Instance.Items.Themoviedb_apikey,
+        //        AppConfig<InternetMovieDBConfig>.Instance.Items.BaseUrl);
 
         //    Dictionary<string, string> queryPairs = new Dictionary<string, string>();
         //    queryPairs.Add("language", "en-US,null");
@@ -41,7 +41,7 @@ namespace FilmLibrary.Test
         //    queryPairs.Add("query", "Fight Club");
 
         //    var actual = await movieService.QueryAsync<MovieSearchResult>(
-        //        InternetMovieDBSettings.Settings.ConfigItems.SearchMovieUrl,
+        //        AppConfig<InternetMovieDBConfig>.Instance.Items.SearchMovieUrl,
         //        queryPairs);
 
         //    queryPairs.Clear();
@@ -49,7 +49,7 @@ namespace FilmLibrary.Test
         //    queryPairs.Add("append_to_response", "images");
 
         //    var actual2 = await movieService.QueryAsync<MovieResult>(
-        //        InternetMovieDBSettings.Settings.ConfigItems.GetMovieUrl + "/" + 550,
+        //        AppConfig<InternetMovieDBConfig>.Instance.Items.GetMovieUrl + "/" + 550,
         //        queryPairs);
         //}
 
