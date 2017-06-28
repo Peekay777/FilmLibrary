@@ -1,6 +1,8 @@
 ﻿using FilmLibrary.InternetMovieDB;
+using FilmLibrary.InternetMovieDB.Models;
 using FilmLibrary.InternetMovieDB.TheMovieDatabase;
 using FilmLibrary.InternetMovieDB.TheMovieDatabase.Models;
+using FilmLibrary.Settings;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -53,6 +55,34 @@ namespace FilmLibrary.Test
         //        queryPairs);
         //}
 
+        //[Fact]
+        //public async void Test()
+        //{
+        //    IHttpClient httpClient;
+        //    //if (!string.IsNullOrEmpty(AppConfig<InternetMovieDBConfig>.Instance.Items.Proxy.Url) &&
+        //    //    !string.IsNullOrEmpty(AppConfig<InternetMovieDBConfig>.Instance.Items.Proxy.Username) &&
+        //    //    !string.IsNullOrEmpty(AppConfig<InternetMovieDBConfig>.Instance.Items.Proxy.Password))
+        //    //{
+        //    //    httpClient = new TheMovieDBHttpClient(
+        //    //        AppConfig<InternetMovieDBConfig>.Instance.Items.Proxy.Url,
+        //    //        AppConfig<InternetMovieDBConfig>.Instance.Items.Proxy.Username,
+        //    //        AppConfig<InternetMovieDBConfig>.Instance.Items.Proxy.Password);
+        //    //}
+        //    //else
+        //    //{
+        //    //    httpClient = new TheMovieDBHttpClient();
+        //    //}
+
+        //    httpClient = new TheMovieDBHttpClient();
+
+        //    IMovieService movieService = new TheMovieDB(
+        //        httpClient,
+        //        AppConfig<InternetMovieDBConfig>.Instance.Items.Themoviedb_apikey,
+        //        AppConfig<InternetMovieDBConfig>.Instance.Items.BaseUrl);
+
+        //    var actual = await movieService.QueryAsync<ConfigurationResult>(AppConfig<InternetMovieDBConfig>.Instance.Items.Urls.Configuration);
+        //}
+
         [Theory(DisplayName = "Search for movie")]
         [InlineData("Fight Club", 14)]
         [InlineData("xxxxxxxxxxxxxxxxxxxxx", 0)]
@@ -79,7 +109,7 @@ namespace FilmLibrary.Test
 
             // Assert
             Assert.IsType(typeof(MovieSearchResult), actual);
-            Assert.Equal(expectedNumber, actual.total_results);
+            Assert.Equal(expectedNumber, actual.Total_results);
         }
 
         [Theory(DisplayName = "Get Movie")]
@@ -112,7 +142,7 @@ namespace FilmLibrary.Test
             else
             {
                 Assert.IsType(typeof(MovieResult), actual);
-                Assert.Equal(expected, actual.title);
+                Assert.Equal(expected, actual.Title);
 
             }
         }

@@ -105,20 +105,16 @@ namespace FilmLibrary.Test
                 var db = new FilmLibraryRepoSQLite(context);
                 db.AddFilm(film1);
                 db.AddFilm(film2);
+
+                // Act
+                List<Film> actualList = db.GetAllFilms();
+
+                // Assert
+                Assert.Equal<Film>(expectedList, actualList);
             }
 
-            // Act
-            List<Film> actualList;
 
-            using (var context = new FilmLibraryContext(options))
-            {
-                var db = new FilmLibraryRepoSQLite(context);
-                actualList = db.GetAllFilms();
-            }
-            
 
-            // Assert
-            Assert.Equal<Film>(expectedList, actualList);
         }
 
         [Theory(DisplayName = "Get film by id")]
@@ -136,19 +132,15 @@ namespace FilmLibrary.Test
                 var db = new FilmLibraryRepoSQLite(context);
                 db.AddFilm(_exampleFilm1);
                 db.AddFilm(_exampleFilm2);
+
+
+
+                // Act
+                Film actualFilm = db.GetFilmById(id);
+
+                // Assert
+                Assert.Equal(expectedId, actualFilm.Id);
             }
-
-
-            // Act
-            Film actualFilm;
-            using (var context = new FilmLibraryContext(options))
-            {
-                var db = new FilmLibraryRepoSQLite(context);
-                actualFilm = db.GetFilmById(id); 
-            }
-
-            // Assert
-            Assert.Equal(expectedId, actualFilm.Id);
         }
 
         [Fact(DisplayName = "Update film")]
@@ -159,34 +151,32 @@ namespace FilmLibrary.Test
                 .UseInMemoryDatabase($"database{Guid.NewGuid()}")
                 .Options;
 
+            bool expected = true;
+
             using (var context = new FilmLibraryContext(options))
             {
                 var db = new FilmLibraryRepoSQLite(context);
                 db.AddFilm(_exampleFilm1);
+
+
+
+
+                Film expectedFilm = new Film()
+                {
+                    Id = 1,
+                    Title = "Fight Club: Extended",
+                    Runtime = 150
+                };
+
+                // Act
+                bool actual = db.UpdateFilm(expectedFilm);
+                Film actualFilm = db.GetFilmById(1);
+
+                // Assert
+                Assert.Equal(expected, actual);
+                Assert.Equal<Film>(expectedFilm, actualFilm);
+
             }
-
-            bool expected = true;
-
-            Film expectedFilm = new Film()
-            {
-                Id = 1,
-                Title = "Fight Club: Extended",
-                Runtime = 150
-            };
-
-            // Act
-            bool actual;
-            Film actualFilm;
-            using (var context = new FilmLibraryContext(options))
-            {
-                var db = new FilmLibraryRepoSQLite(context);
-                actual = db.UpdateFilm(expectedFilm);
-                actualFilm = db.GetFilmById(1); 
-            }
-
-            // Assert
-            Assert.Equal(expected, actual);
-            Assert.Equal<Film>(expectedFilm, actualFilm);
         }
 
         [Theory(DisplayName = "Delete film")]
@@ -204,21 +194,15 @@ namespace FilmLibrary.Test
                 var db = new FilmLibraryRepoSQLite(context);
                 db.AddFilm(_exampleFilm1);
                 db.AddFilm(_exampleFilm2);
-            }
 
-            // Act
-            bool actual;
-            int actualCount;
-            using (var context = new FilmLibraryContext(options))
-            {
-                var db = new FilmLibraryRepoSQLite(context);
-                actual = db.DeleteFilm(id);
-                actualCount = db.GetAllFilms().Count;
-            }
+                // Act
+                bool actual = db.DeleteFilm(id);
+                int actualCount = db.GetAllFilms().Count;
 
-            // Assert
-            Assert.Equal(expected, actual);
-            Assert.Equal(expectedCount, actualCount);
+                // Assert
+                Assert.Equal(expected, actual);
+                Assert.Equal(expectedCount, actualCount);
+            }
         }
     }
 }

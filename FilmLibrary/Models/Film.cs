@@ -3,10 +3,14 @@
     public class Film
     {
         public int Id { get; set; }
+        public int Tmdb_Id { get; set; }
         public string Title { get; set; }
+        public string Overview { get; set; }
         public ushort Runtime { get; set; }
         public string ReleaseDate { get; set; }
-
+        public float VoteAverage { get; set; }
+        public string Genre { get; set; }
+        public string Backdrop_Filepath { get; set; }
 
 
 

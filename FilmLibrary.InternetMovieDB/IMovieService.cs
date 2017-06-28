@@ -7,6 +7,6 @@ namespace FilmLibrary.InternetMovieDB
     public interface IMovieService
     {
         Task<T> QueryAsync<T>(InternetMovieDBUrlBuilder uri);
-        Task<T> QueryAsync<T>(string relativeUrl, Dictionary<String, String> queryPairs);
+        Task<T> QueryAsync<T>(string relativeUrl = "", Dictionary<string, string> queryPairs = null);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FilmLibrary.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -21,7 +22,7 @@ namespace FilmLibrary.Data.Sql
             return film.Id;
         }
 
-        public int Commit()
+        private int Commit()
         {
             return _context.SaveChanges();
         }

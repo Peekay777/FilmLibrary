@@ -1,73 +1,118 @@
-﻿namespace FilmLibrary.InternetMovieDB.TheMovieDatabase.Models
+﻿using Newtonsoft.Json;
+
+namespace FilmLibrary.InternetMovieDB.TheMovieDatabase.Models
 {
     public class MovieResult
     {
-        public bool adult { get; set; }
-        public string backdrop_path { get; set; }
-        public object belongs_to_collection { get; set; }
-        public int budget { get; set; }
-        public Genre[] genres { get; set; }
-        public string homepage { get; set; }
-        public int id { get; set; }
-        public string imdb_id { get; set; }
-        public string original_language { get; set; }
-        public string original_title { get; set; }
-        public string overview { get; set; }
-        public float popularity { get; set; }
-        public string poster_path { get; set; }
-        public Production_Companies[] production_companies { get; set; }
-        public Production_Countries[] production_countries { get; set; }
-        public string release_date { get; set; }
-        public int revenue { get; set; }
-        public int runtime { get; set; }
-        public Spoken_Languages[] spoken_languages { get; set; }
-        public string status { get; set; }
-        public string tagline { get; set; }
-        public string title { get; set; }
-        public bool video { get; set; }
-        public float vote_average { get; set; }
-        public int vote_count { get; set; }
-        public Images images { get; set; }
+        [JsonProperty(PropertyName = "adult")]
+        public bool Adult { get; set; }
+        [JsonProperty(PropertyName = "backdrop_path")]
+        public string Backdrop_path { get; set; }
+        [JsonProperty(PropertyName = "belongs_to_collection")]
+        public object Belongs_to_collection { get; set; }
+        [JsonProperty(PropertyName = "budget")]
+        public int Budget { get; set; }
+        [JsonProperty(PropertyName = "genres")]
+        public Genre[] Genres { get; set; }
+        [JsonProperty(PropertyName = "homepage")]
+        public string Homepage { get; set; }
+        [JsonProperty(PropertyName = "id")]
+        public int Id { get; set; }
+        [JsonProperty(PropertyName = "imdb_id")]
+        public string Imdb_id { get; set; }
+        [JsonProperty(PropertyName = "original_language")]
+        public string Original_language { get; set; }
+        [JsonProperty(PropertyName = "original_title")]
+        public string Original_title { get; set; }
+        [JsonProperty(PropertyName = "overview")]
+        public string Overview { get; set; }
+        [JsonProperty(PropertyName = "popularity")]
+        public float Popularity { get; set; }
+        [JsonProperty(PropertyName = "poster_path")]
+        public string Poster_path { get; set; }
+        [JsonProperty(PropertyName = "production_companies")]
+        public Production_Companies[] Production_companies { get; set; }
+        [JsonProperty(PropertyName = "production_countries")]
+        public Production_Countries[] Production_countries { get; set; }
+        [JsonProperty(PropertyName = "release_date")]
+        public string Release_date { get; set; }
+        [JsonProperty(PropertyName = "revenue")]
+        public int Revenue { get; set; }
+        [JsonProperty(PropertyName = "runtime")]
+        public int Runtime { get; set; }
+        [JsonProperty(PropertyName = "spoken_languages")]
+        public Spoken_Languages[] Spoken_languages { get; set; }
+        [JsonProperty(PropertyName = "status")]
+        public string Status { get; set; }
+        [JsonProperty(PropertyName = "tagline")]
+        public string Tagline { get; set; }
+        [JsonProperty(PropertyName = "title")]
+        public string Title { get; set; }
+        [JsonProperty(PropertyName = "video")]
+        public bool Video { get; set; }
+        [JsonProperty(PropertyName = "vote_average")]
+        public float Vote_average { get; set; }
+        [JsonProperty(PropertyName = "vote_count")]
+        public int Vote_count { get; set; }
+        [JsonProperty(PropertyName = "images")]
+        public Images Images { get; set; }
     }
 
     public class Images
     {
-        public Backdrop[] backdrops { get; set; }
-        public object[] posters { get; set; }
+        [JsonProperty(PropertyName = "backdrops")]
+        public Backdrop[] Backdrops { get; set; }
+        [JsonProperty(PropertyName = "posters")]
+        public object[] Posters { get; set; }
     }
 
     public class Backdrop
     {
-        public float aspect_ratio { get; set; }
-        public string file_path { get; set; }
-        public int height { get; set; }
-        public string iso_639_1 { get; set; }
-        public float vote_average { get; set; }
-        public int vote_count { get; set; }
-        public int width { get; set; }
+        [JsonProperty(PropertyName = "aspect_ratio")]
+        public float Aspect_ratio { get; set; }
+        [JsonProperty(PropertyName = "file_path")]
+        public string File_path { get; set; }
+        [JsonProperty(PropertyName = "height")]
+        public int Height { get; set; }
+        [JsonProperty(PropertyName = "iso_639_1")]
+        public string Iso_639_1 { get; set; }
+        [JsonProperty(PropertyName = "vote_average")]
+        public float Vote_average { get; set; }
+        [JsonProperty(PropertyName = "vote_count")]
+        public int Vote_count { get; set; }
+        [JsonProperty(PropertyName = "width")]
+        public int Width { get; set; }
     }
 
     public class Genre
     {
-        public int id { get; set; }
-        public string name { get; set; }
+        [JsonProperty(PropertyName = "id")]
+        public int Id { get; set; }
+        [JsonProperty(PropertyName = "name")]
+        public string Name { get; set; }
     }
 
     public class Production_Companies
     {
-        public string name { get; set; }
-        public int id { get; set; }
+        [JsonProperty(PropertyName = "name")]
+        public string Name { get; set; }
+        [JsonProperty(PropertyName = "id")]
+        public int Id { get; set; }
     }
 
     public class Production_Countries
     {
-        public string iso_3166_1 { get; set; }
-        public string name { get; set; }
+        [JsonProperty(PropertyName = "iso_3166_1")]
+        public string Iso_3166_1 { get; set; }
+        [JsonProperty(PropertyName = "name")]
+        public string Name { get; set; }
     }
 
     public class Spoken_Languages
     {
-        public string iso_639_1 { get; set; }
-        public string name { get; set; }
+        [JsonProperty(PropertyName = "iso_639_1")]
+        public string Iso_639_1 { get; set; }
+        [JsonProperty(PropertyName = "name")]
+        public string Name { get; set; }
     }
 }

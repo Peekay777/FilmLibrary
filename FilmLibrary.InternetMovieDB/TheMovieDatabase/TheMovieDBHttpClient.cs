@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -29,13 +30,21 @@ namespace FilmLibrary.InternetMovieDB.TheMovieDatabase
 
         public async Task<string> MakeRequest(Uri address)
         {
-            try
+            HttpResponseMessage response = await _httpClient.GetAsync(address);
+
+            switch (response.StatusCode)
             {
-                return await _httpClient.GetStringAsync(address);
-            }
-            catch
-            {
-                return "";
+                // 200
+                case HttpStatusCode.OK:
+                    return await response.Content.ReadAsStringAsync();
+                // 401
+                case HttpStatusCode.Unauthorized:
+                    throw new UnauthorizedException();
+                // 404
+                case HttpStatusCode.NotFound:
+                    throw new NotFoundException();
+                default:
+                    throw new Exception();
             }
         }
 

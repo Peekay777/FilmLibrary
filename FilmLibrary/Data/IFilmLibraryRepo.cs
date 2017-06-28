@@ -10,6 +10,5 @@ namespace FilmLibrary.Data
         int AddFilm(Film film);
         bool UpdateFilm(Film film);
         bool DeleteFilm(int id);
-        int Commit();
     }
 }

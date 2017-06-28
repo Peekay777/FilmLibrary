@@ -30,13 +30,22 @@ namespace FilmLibrary.InternetMovieDB.TheMovieDatabase
             return JsonConvert.DeserializeObject<T>(responseText);
         }
 
-        public async Task<T> QueryAsync<T>(string relativeUrl, Dictionary<String, String> queryPairs)
+        public async Task<T> QueryAsync<T>(string relativeUrl = "", Dictionary<string, string> queryPairs = null)
         {
-            InternetMovieDBUrlBuilder uri = new InternetMovieDBUrlBuilder(_baseUrl + "/" + relativeUrl);
-            uri.Add("api_key", _apiKey);
-            foreach (var pair in queryPairs)
+            if (!string.IsNullOrEmpty(relativeUrl))
             {
-                uri.Add(pair.Key, pair.Value);
+                relativeUrl = "/" + relativeUrl;
+            }
+
+            InternetMovieDBUrlBuilder uri = new InternetMovieDBUrlBuilder(_baseUrl + relativeUrl);
+            uri.Add("api_key", _apiKey);
+
+            if (queryPairs != null)
+            {
+                foreach (var pair in queryPairs)
+                {
+                    uri.Add(pair.Key, pair.Value);
+                }
             }
 
             return await QueryAsync<T>(uri);

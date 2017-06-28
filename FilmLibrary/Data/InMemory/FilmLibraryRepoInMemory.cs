@@ -23,11 +23,6 @@ namespace FilmLibrary.Data.InMemory
             return film.Id;
         }
 
-        public int Commit()
-        {
-            throw new NotImplementedException();
-        }
-
         public bool DeleteFilm(int id)
         {
             return _films.RemoveAll(f => f.Id == id) > 0 ? true : false;
