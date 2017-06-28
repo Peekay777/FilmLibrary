@@ -121,13 +121,6 @@ namespace FilmLibrary.Test
             filmRepo.AddFilm(_exampleFilm1);
             filmRepo.AddFilm(_exampleFilm2);
 
-            Film expectedFilm = new Film()
-            {
-                Id = 0,
-                Title = "Fight Club: Extended",
-                Runtime = 150
-            };
-
             // Act
             bool actual = filmRepo.DeleteFilm(id);
             int actualCount = filmRepo.GetAllFilms().Count;

@@ -23,7 +23,7 @@ namespace FilmLibrary.Data.InMemory
             return film.Id;
         }
 
-        public bool Commit()
+        public int Commit()
         {
             throw new NotImplementedException();
         }
